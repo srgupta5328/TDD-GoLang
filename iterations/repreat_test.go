@@ -1,9 +1,18 @@
 package iterations
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
+func ExampleRepeat() {
+	result := Repeat("a", 6)
+	fmt.Println(result)
+
+	//Output: aaaaaa
+}
 func TestRepeat(t *testing.T) {
-	t.Run("Testing the repeat function with a", func(t *testing.T) {
+	t.Run("Testing the repeat function with 'a'", func(t *testing.T) {
 		repeated := Repeat("a", 6)
 		expected := "aaaaaa"
 
