@@ -11,6 +11,12 @@ func TestRepeat(t *testing.T) {
 	}
 }
 
+func BenchmarkRepeat(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Repeat("a")
+	}
+}
+
 //When comparing lists make sure that it equals nil for test
 func TestPrintLnist(t *testing.T) {
 	got := PrintList(list)
