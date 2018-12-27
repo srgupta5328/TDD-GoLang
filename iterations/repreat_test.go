@@ -41,3 +41,20 @@ func TestPrintList(t *testing.T) {
 	})
 
 }
+
+func TestLowerCaseList(t *testing.T) {
+	t.Run("testing with a list of string", func(t *testing.T) {
+		got := LowerCaseList(fruits)
+		expected := []string{"apple", "orange", "banana", "grape"}
+
+		if got == nil {
+			t.Errorf("expected: '%s', got: '%s'", expected, got)
+		}
+	})
+}
+
+func ExampleLowerCaseList() {
+	result := LowerCaseList(fruits)
+	fmt.Println(result)
+	//Output: [apple orange banana grape]
+}

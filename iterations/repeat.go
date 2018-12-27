@@ -1,5 +1,7 @@
 package iterations
 
+import "strings"
+
 func Repeat(val string, count int) string {
 	var character string
 	for i := 0; i <= count-1; i++ {
@@ -18,4 +20,16 @@ func PrintList(val []int) []int {
 	}
 
 	return manipulatedList
+}
+
+var fruits = []string{"Apple", "Orange", "Banana", "Grape"}
+
+func LowerCaseList(val []string) []string {
+	var modifiedList []string
+	for i, _ := range val {
+		s := strings.ToLower(val[i])
+		modifiedList = append(modifiedList, s)
+	}
+
+	return modifiedList
 }
