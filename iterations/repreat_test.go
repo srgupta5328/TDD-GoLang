@@ -42,6 +42,12 @@ func TestPrintList(t *testing.T) {
 
 }
 
+func BenchmarkPrintList(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		PrintList(list)
+	}
+}
+
 func TestLowerCaseList(t *testing.T) {
 	t.Run("testing with a list of string", func(t *testing.T) {
 		got := LowerCaseList(fruits)
@@ -57,4 +63,10 @@ func ExampleLowerCaseList() {
 	result := LowerCaseList(fruits)
 	fmt.Println(result)
 	//Output: [apple orange banana grape]
+}
+
+func BenchmarkLowerCaseList(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		LowerCaseList(fruits)
+	}
 }
