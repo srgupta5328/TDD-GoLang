@@ -2,6 +2,7 @@ package iterations
 
 import (
 	"fmt"
+	"reflect"
 	"testing"
 )
 
@@ -35,7 +36,7 @@ func TestPrintList(t *testing.T) {
 		got := PrintList(list)
 		expected := []int{2, 4, 4, 5, 6, 7, 8}
 
-		if got == nil {
+		if !reflect.DeepEqual(got, expected) {
 			t.Errorf("expected: '%d', got: '%d'", expected, got)
 		}
 	})
@@ -53,7 +54,7 @@ func TestLowerCaseList(t *testing.T) {
 		got := LowerCaseList(fruits)
 		expected := []string{"apple", "orange", "banana", "grape"}
 
-		if got == nil {
+		if !reflect.DeepEqual(got, expected) {
 			t.Errorf("expected: '%s', got: '%s'", expected, got)
 		}
 	})
