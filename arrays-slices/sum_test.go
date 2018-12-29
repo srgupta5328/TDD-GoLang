@@ -46,7 +46,7 @@ func BenchmarkSum(b *testing.B) {
 
 func TestSumAll(t *testing.T) {
 	got := SumAll([]int{1, 2}, []int{0, 9})
-	want := "bob" //[]int{3, 9}
+	want := []int{3, 9}
 
 	if !reflect.DeepEqual(got, want) {
 		t.Errorf("Want: '%v', Got: '%v'", want, got)
