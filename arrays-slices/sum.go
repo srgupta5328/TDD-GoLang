@@ -32,3 +32,13 @@ func SumAll(s1, s2 []int) []int {
 
 	return total
 }
+
+//Version 2 of the function, performs better O(n)
+func SumAllV2(numbersToSum ...[]int) []int {
+	var sums []int
+	for _, nums := range numbersToSum {
+		sums = append(sums, Sum(nums))
+	}
+
+	return sums
+}
