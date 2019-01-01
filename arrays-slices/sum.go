@@ -42,3 +42,15 @@ func SumAllV2(numbersToSum ...[]int) []int {
 
 	return sums
 }
+
+func SumAllTails(numsToSum ...[]int) []int {
+	var total []int
+	for _, nums := range numsToSum {
+
+		//Tail says first element in slice to the end
+		tail := nums[1:]
+		total = append(total, Sum(tail))
+	}
+
+	return total
+}
