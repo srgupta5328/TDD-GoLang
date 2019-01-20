@@ -1,7 +1,5 @@
 package maps
 
-import "errors"
-
 //Search function searches the dictionary for a specific key, This was my original implementation of the function
 func Search(dictionary map[string]string, word string) string {
 	for k, v := range dictionary {
@@ -18,7 +16,16 @@ func Search(dictionary map[string]string, word string) string {
 // Textbook Implementation of the function
 type Dictionary map[string]string
 
-var ErrorNotFound = errors.New("Couldn't find the word")
+const (
+	ErrorNotFound   = DictionaryErr("Couldn't find the word")
+	ErrorWordExists = DictionaryErr("Error word exists")
+)
+
+type DictionaryErr string
+
+func (e DictionaryErr) Error() string {
+	return string(e)
+}
 
 func (d Dictionary) SearchV2(word string) (string, error) {
 	definition, ok := d[word]
@@ -29,6 +36,18 @@ func (d Dictionary) SearchV2(word string) (string, error) {
 }
 
 //Add function adds a word and definition to an existing Dictionary
-func (d Dictionary) Add(word, def string) {
-	d[word] = def
+func (d Dictionary) Add(word, definition string) error {
+	_, err := d.SearchV2(word)
+
+	switch err {
+	case ErrorNotFound:
+		d[word] = definition
+	case nil:
+		return ErrorWordExists
+	default:
+		return err
+	}
+
+	return nil
+
 }

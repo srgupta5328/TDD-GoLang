@@ -55,13 +55,25 @@ func TestSearchV2(t *testing.T) {
 }
 
 func TestAdd(t *testing.T) {
-	dictionary := Dictionary{}
-	word := "hot"
-	def := "having a high degree of heat or a high temperature"
-	dictionary.Add(word, def)
+	t.Run("new word", func(t *testing.T) {
+		dictionary := Dictionary{}
+		word := "hot"
+		def := "having a high degree of heat or a high temperature"
+		err := dictionary.Add(word, def)
 
-	assertDefinition(t, dictionary, word, def)
+		assertError(t, err, nil)
+		assertDefinition(t, dictionary, word, def)
+	})
 
+	t.Run("existing word", func(t *testing.T) {
+		word := "hot"
+		def := "having a high degree of heat or a high temperature"
+		dictionary := Dictionary{word: def}
+		err := dictionary.Add(word, "new test")
+
+		assertError(t, err, ErrorWordExists)
+		assertDefinition(t, dictionary, word, def)
+	})
 }
 
 func assertDefinition(t *testing.T, dictionary Dictionary, word, def string) {
